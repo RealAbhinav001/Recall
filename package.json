@@ -1,0 +1,30 @@
+{
+  "name": "recall",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "prettier": "@recall/config/prettier",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.8.1",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.8.1",
+  "type": "module",
+  "devDependencies": {
+    "@recall/config": "workspace:*",
+    "prettier": "^3.9.9",
+    "turbo": "^2.11.6"
+  }
+}

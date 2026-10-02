@@ -1,0 +1,16 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Single source of truth for shared tool versions.
+# Packages reference these with "catalog:" instead of a version number.
+catalog:
+  typescript: ^5.9.3
+  eslint: ^9.39.5
+  "@eslint/js": ^9
+  typescript-eslint: ^8.71.0
+  "@types/node": ^22
+
+allowBuilds:
+  unrs-resolver: true
+  esbuild: true

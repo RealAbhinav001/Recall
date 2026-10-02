@@ -1,0 +1,7 @@
+{
+  "extends": "@recall/config/tsconfig",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["src"]
+}

@@ -1,0 +1,4 @@
+{
+  "extends": "@recall/config/tsconfig",
+  "include": ["src"]
+}
