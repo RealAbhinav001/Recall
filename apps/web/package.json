@@ -2,17 +2,26 @@
   "name": "@recall/web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "auth:generate": "dotenv -e ../../.env -- auth generate --config src/lib/auth.ts --output ../../packages/db/prisma/schema.prisma"
   },
   "dependencies": {
+    "@next/env": "16.3.8",
+    "@recall/db": "workspace:*",
     "@recall/shared": "workspace:*",
+    "@sentry/nextjs": "^11.2.0",
+    "better-auth": "^1.7.7",
     "next": "16.3.8",
+    "pino": "catalog:",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@recall/config": "workspace:*",
@@ -20,8 +29,11 @@
     "@types/node": "catalog:",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "auth": "1.7.7",
+    "dotenv-cli": "^11.0.0",
     "eslint": "catalog:",
     "eslint-config-next": "16.3.8",
+    "pino-pretty": "catalog:",
     "tailwindcss": "^4",
     "typescript": "catalog:"
   }

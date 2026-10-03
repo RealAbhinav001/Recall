@@ -4,7 +4,7 @@ import { defineConfig } from "eslint/config";
 
 export default defineConfig(
   {
-    ignores: ["**/dist/**", "**/.next/**", "**/.turbo/**", "**/node_modules/**"],
+    ignores: ["**/dist/**", "**/.next/**", "**/.turbo/**", "**/node_modules/**", "**/generated/**"],
   },
   js.configs.recommended,
   tseslint.configs.recommended,

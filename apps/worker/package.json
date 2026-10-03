@@ -4,17 +4,22 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch --env-file=../../.env src/index.ts",
     "build": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "start": "tsx --env-file-if-exists=../../.env src/index.ts"
   },
   "dependencies": {
-    "@recall/shared": "workspace:*"
+    "@recall/db": "workspace:*",
+    "@recall/shared": "workspace:*",
+    "@sentry/node": "^11.2.0",
+    "pino": "catalog:"
   },
   "devDependencies": {
     "@recall/config": "workspace:*",
     "@types/node": "catalog:",
     "eslint": "catalog:",
+    "pino-pretty": "catalog:",
     "tsx": "^4.23.15",
     "typescript": "catalog:"
   }

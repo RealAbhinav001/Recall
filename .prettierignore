@@ -4,3 +4,5 @@ node_modules
 dist
 coverage
 pnpm-lock.yaml
+# generated code (rebuilt by `prisma generate`)
+**/generated/**

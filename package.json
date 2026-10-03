@@ -8,10 +8,15 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "lint": "turbo lint",
+    "test": "turbo test",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "db:up": "docker compose up -d --wait",
     "db:down": "docker compose down",
-    "db:logs": "docker compose logs -f"
+    "db:logs": "docker compose logs -f",
+    "db:generate": "pnpm --filter @recall/db db:generate",
+    "db:migrate": "pnpm --filter @recall/db db:migrate",
+    "db:studio": "pnpm --filter @recall/db db:studio"
   },
   "keywords": [],
   "author": "",

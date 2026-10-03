@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A newer push to the same branch cancels the stale run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Throwaway Postgres (same pgvector image as docker-compose) so migrations
+    # are proven to apply cleanly on a fresh database.
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.7-pg17-trixie
+        env:
+          POSTGRES_USER: recall
+          POSTGRES_PASSWORD: recall
+          POSTGRES_DB: recall
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U recall -d recall"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    # CI-only values. Nothing here is a real secret.
+    env:
+      DATABASE_URL: postgresql://recall:recall@localhost:5432/recall
+      REDIS_URL: redis://localhost:6379
+      BETTER_AUTH_SECRET: ci-only-placeholder-secret-not-used-anywhere-real
+      BETTER_AUTH_URL: http://localhost:3000
+
+    steps:
+      - uses: actions/checkout@v5
+
+      # Reads the pnpm version from "packageManager" in package.json.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Apply migrations to a fresh database
+        run: pnpm --filter @recall/db exec prisma migrate deploy
+
+      - name: Build (type-check + Prisma generate + Next.js build)
+        run: pnpm build
+
+      - name: Test
+        run: pnpm test

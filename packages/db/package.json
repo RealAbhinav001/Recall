@@ -1,0 +1,31 @@
+{
+  "name": "@recall/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "prisma generate && tsc --noEmit",
+    "lint": "eslint .",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "catalog:",
+    "@prisma/client": "catalog:",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@recall/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/pg": "^8.23.1",
+    "dotenv": "^18.0.5",
+    "eslint": "catalog:",
+    "prisma": "catalog:",
+    "typescript": "catalog:"
+  }
+}

@@ -24,3 +24,9 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/*
 !.vscode/extensions.json
+
+# generated Prisma client (rebuilt by `prisma generate`)
+packages/db/src/generated
+
+# local Claude Code tooling (preview config)
+.claude/
